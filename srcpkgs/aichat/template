@@ -1,0 +1,24 @@
+# Template file for 'aichat'
+pkgname=aichat
+version=0.30.0
+revision=1
+build_style=cargo
+hostmakedepends="pkg-config"
+makedepends="oniguruma-devel"
+short_desc="All-in-one LLM CLI tool"
+maintainer="Oleg Fedotov <ol.fed25@gmail.com>"
+license="MIT, Apache-2.0"
+homepage="https://github.com/sigoden/aichat"
+distfiles="https://github.com/sigoden/aichat/archive/refs/tags/v${version}.tar.gz"
+checksum=e194cc89afc213a6e3169738221cae641c347421c4f2aacd5d6f4f7cc6edb387
+
+post_install() {
+	local sh
+
+	vlicense LICENSE-APACHE
+	vlicense LICENSE-MIT
+
+	for sh in bash fish zsh; do
+		vcompletion "scripts/completions/aichat.${sh}" "${sh}"
+	done
+}
