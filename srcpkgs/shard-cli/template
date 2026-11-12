@@ -1,0 +1,20 @@
+# Template file for 'shard-cli'
+pkgname=shard-cli
+version=0.1.28
+revision=1
+build_style=cargo
+make_build_args="-p shard"
+make_check_args="$make_build_args"
+make_install_args="--path launcher"
+hostmakedepends="pkg-config"
+makedepends="libglib-devel gtk+3-devel libwebkit2gtk41-devel"
+short_desc="Minimal, content-addressed Minecraft launcher (CLI)"
+maintainer="Oleg Fedotov <ol.fed25@gmail.com>"
+license="MIT"
+homepage="https://shard.thomas.md"
+distfiles="https://github.com/Th0rgal/shard/archive/refs/tags/v${version}.tar.gz"
+checksum=82c75f3dcf2ef81c5a2f3fcb1d8d71643f172f4d3791cdb360b383c997f0b2ea
+
+post_install() {
+	vlicense LICENSE
+}
